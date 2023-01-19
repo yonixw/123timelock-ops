@@ -1,0 +1,11 @@
+{
+  "name": "123timelock-ops",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/yonixw/123timelock-ops.git",
+  "author": "Yoni Water Man <yonixw@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "badafti": "npx -y git+https://github.com/comfyops/badafti#main"
+  }
+}
