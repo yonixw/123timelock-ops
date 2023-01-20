@@ -1,0 +1,39 @@
+CloudBOM:
+  - "apigw_lambda":
+    dev_selector: "main_lambda" # so dev will not get from flavour he doesn't want...
+    count: 1
+    flavour:
+      - "docker" # disables other (1 of many)
+      - "lowcost" # make variable required
+    dev_overwrites:
+      - throttle:
+          validate: "utils.StrictInt(x) && (x>0) && (x<100)"
+          default: 100
+    ops_overwrites:
+      - X: "Y"
+
+flowX: 
+  on: "trigger"
+
+
+before_all:
+  - "Get Secret X"
+
+before_each:
+  - "Clean secrets from shared ENV"
+
+after_each:
+  - "Check time left in pipeline?"
+
+post_jobs:
+  - "Clean env"
+
+defaults:
+  allowed_paths: # globs
+    - "/etc/localtime"
+    - "os.pwd() + '/unsafe_artifact/*'": # Don't run anything from it with secrets!
+        js: true
+    - "xxx":
+        readonly: true
+
+  
